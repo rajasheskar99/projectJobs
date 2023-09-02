@@ -1,0 +1,164 @@
+.job-card {
+  background-color: #272727;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  list-style-type: none;
+  width: 80%;
+  padding: auto;
+}
+.rating {
+  display: flex;
+}
+.star {
+  color: #fbbf24;
+  height: 25px;
+  width: 25px;
+  margin-left: 13px;
+}
+.rate-text {
+  font-family: 'roboto';
+  font-size: 15px;
+  color: white;
+  font-weight: 500;
+  margin-top: 6px;
+  padding-top: 0;
+  margin-left: 8px;
+}
+.title {
+  font-family: 'roboto';
+  font-size: 20px;
+  color: white;
+  margin-left: 13px;
+}
+.title-sec {
+  display: flex;
+  flex-direction: column;
+}
+.company-logo {
+  height: 80px;
+  width: 70px;
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+.logo-sec {
+  display: flex;
+}
+.middle-sec {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.middle-min {
+  display: flex;
+  margin-right: 15px;
+}
+.middle {
+  display: flex;
+}
+.middle-icon {
+  color: white;
+  height: 25px;
+  width: 25px;
+  margin-top: 8px;
+}
+.location {
+  font-family: 'roboto';
+  font-size: 13px;
+  font-weight: 500;
+  color: #f1f5f9;
+  margin-left: 8px;
+}
+.package {
+  font-family: 'roboto';
+  font-size: 16px;
+  font-weight: 500;
+  color: #f1f5f9;
+  margin-right: 20px;
+}
+.line {
+  color: #475569;
+  width: 100%;
+  margin-top: 0;
+  padding-top: 0;
+}
+.desc {
+  font-family: 'roboto';
+  font-size: 18px;
+  font-weight: 500;
+  color: #f1f5f9;
+}
+.job-dec {
+  font-family: 'roboto';
+  font-size: 14px;
+  font-weight: 0;
+  color: #f1f5f9;
+  line-height: 1.8;
+  margin-top: 0;
+  padding-top: 0;
+}
+.skills-sec {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  width: 70%;
+}
+.skill-title {
+  font-family: 'roboto';
+  font-size: 18px;
+  font-weight: 500;
+  color: #f1f5f9;
+  margin-left: 10px;
+}
+.job-list-item {
+  display: flex;
+  margin: 30px;
+}
+.life-company {
+  height: 180px;
+  width: 300px;
+}
+.skill-logo {
+  height: 60px;
+  width: 60px;
+}
+.life-company-sec {
+  display: flex;
+  justify-content: space-between;
+}
+.life-dec {
+  font-family: 'roboto';
+  font-size: 15px;
+  color: #f8fafc;
+  line-height: 2;
+  width: 50%;
+}
+
+.similar-job-card {
+  background-color: #272727;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 8px;
+  list-style-type: none;
+  width: 45%;
+  margin: 15px;
+}
+.semi-sec {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.semi-list {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}

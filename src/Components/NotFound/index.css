@@ -1,0 +1,20 @@
+.found-sec {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: black;
+  background-size: cover;
+  height: 100vh;
+}
+.found-head {
+  font-family: 'roboto';
+  font-size: 30px;
+  color: white;
+}
+.try {
+  font-family: 'roboto';
+  font-size: 15px;
+  color: #7e858e;
+}

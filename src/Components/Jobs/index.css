@@ -1,0 +1,81 @@
+.jobs-section {
+  background-color: black;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+}
+.jobs-container {
+  padding-top: 40px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 30px;
+  width: 70%;
+}
+.job-right-sec {
+  display: flex;
+  flex-direction: column;
+}
+.input-search {
+  font-size: 15px;
+  font-family: 'roboto';
+  color: #7e858e;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #64748b;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  width: 300px;
+  margin-top: 10px;
+}
+.search-btn {
+  background-color: #272727;
+  height: 40px;
+  width: 60px;
+  border: 1px solid #64748b;
+  border-left: none;
+  color: white;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.job-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+.job-main {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.not-found-sec {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: black;
+  background-size: cover;
+  height: 100vh;
+}
+.not-found-head {
+  font-family: 'roboto';
+  font-size: 30px;
+  color: white;
+}
+.try {
+  font-family: 'roboto';
+  font-size: 15px;
+  color: #7e858e;
+}
+.retry {
+  color: white;
+  background-color: #4f46e5;
+  padding: 15px;
+  font-family: 'roboto';
+  border: none;
+  border-radius: 8px;
+}

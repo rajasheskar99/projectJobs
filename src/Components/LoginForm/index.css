@@ -1,0 +1,66 @@
+.login-main {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/home-lg-bg.png');
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-card {
+  background-color: #272727;
+  border: none;
+  border-radius: 8px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.label {
+  font-size: 16px;
+  font-family: 'roboto';
+  color: white;
+  margin-bottom: 5px;
+}
+.login-logo {
+  height: 60px;
+  width: 150px;
+  margin-bottom: 50px;
+}
+
+.input {
+  font-size: 15px;
+  font-family: 'roboto';
+  color: #7e858e;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #64748b;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: transparent;
+  width: 350px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.submit {
+  font-size: 17px;
+  font-family: 'roboto';
+  color: white;
+  background-color: #4f46e5;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  margin-top: 20px;
+  font-weight: 500;
+}
+.error {
+  font-size: 12px;
+  font-family: 'roboto';
+  color: red;
+}

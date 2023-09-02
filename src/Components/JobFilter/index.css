@@ -1,0 +1,61 @@
+.jobs-left-sec {
+  width: 30%;
+  padding: 20px;
+  margin-left: 70px;
+  margin-top: 30px;
+}
+.profile-card {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.profile {
+  height: 80px;
+  width: 80px;
+  border-radius: 60px;
+}
+.name {
+  font-family: 'roboto';
+  font-size: 20px;
+  color: #6366f1;
+}
+.bio {
+  font-family: 'roboto';
+  font-size: 13px;
+  color: #2c364c;
+}
+.filter-title {
+  font-family: 'roboto';
+  font-size: 16px;
+  color: white;
+  margin-top: 22px;
+}
+.label {
+  font-family: 'roboto';
+  font-size: 13px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+}
+.check-box {
+  height: 15px;
+  width: 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  outline: none;
+}
+.list-item {
+  margin-bottom: 5px;
+}
+.emp-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
