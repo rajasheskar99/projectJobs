@@ -4,12 +4,12 @@ const NotFound = () => (
   <div className="found-sec">
     <img
       src="https://assets.ccbp.in/frontend/react-js/jobby-app-not-found-img.png"
-      alt="not found"
       className="no-found"
+      alt="notfound"
     />
-    <h1 className="found-head">Page Not Found</h1>
+    <h1 className="found-head"> Page Not Found</h1>
     <p className="try">
-      We are sorry,The page you requested could not be found
+      We are sorry, the page you requested could not be found
     </p>
   </div>
 )

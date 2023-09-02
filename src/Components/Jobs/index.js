@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 import {BsSearch} from 'react-icons/bs'
 import Header from '../Header'
 import JobCard from '../JobCard'
@@ -195,6 +196,10 @@ class Jobs extends Component {
   render() {
     const {jobsInfo} = this.state
     const result = jobsInfo.length < 1
+    const token = Cookies.get('jwt_token')
+    if (token === undefined) {
+      return <Redirect to="/login" />
+    }
 
     return (
       <div className="jobs-section">

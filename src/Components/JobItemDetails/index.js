@@ -1,5 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import Loader from 'react-loader-spinner'
+import {Redirect} from 'react-router-dom'
 import {AiOutlineStar} from 'react-icons/ai'
 import {MdLocationOn} from 'react-icons/md'
 import {BsFillBriefcaseFill} from 'react-icons/bs'
@@ -8,13 +10,20 @@ import Header from '../Header'
 import './index.css'
 
 class JobItemDetails extends Component {
-  state = {jobInfo: {}, jobSkill: [], similarJobs: [], lifeAtCompany: {}}
+  state = {
+    isLoad: false,
+    jobInfo: {},
+    jobSkill: [],
+    similarJobs: [],
+    lifeAtCompany: {},
+  }
 
   componentDidMount() {
     this.getJobItem()
   }
 
   getJobItem = async () => {
+    this.setState(prevSate=>({isLoad: !prevSate.isLoad}))
     const token = Cookies.get('jwt_token')
     const {match} = this.props
     const {params} = match
@@ -30,6 +39,7 @@ class JobItemDetails extends Component {
     if (response.ok) {
       const jobDetails = await response.json()
       const updateJobDetails = {
+        id: jobDetails.job_details.id,
         companyLogoUrl: jobDetails.job_details.company_logo_url,
         companyWebsiteUrl: jobDetails.job_details.company_website_url,
         employmentType: jobDetails.job_details.employment_type,
@@ -45,6 +55,7 @@ class JobItemDetails extends Component {
         name: eachI.name,
       }))
       const similarData = jobDetails.similar_jobs.map(items => ({
+        id: items.id,
         companyLogoUrl: items.company_logo_url,
         employmentType: items.employment_type,
         jobDescription: items.job_description,
@@ -62,13 +73,15 @@ class JobItemDetails extends Component {
         similarJobs: similarData,
         jobSkill: updatedSkill,
         lifeAtCompany: lifeCompany,
+        
       })
+      this.setState(prevSate=>({isLoad: !prevSate.isLoad}))
     }
   }
 
-  render() {
-    const {jobInfo, jobSkill, similarJobs, lifeAtCompany} = this.state
-    console.log(jobInfo, jobSkill, similarJobs, lifeAtCompany)
+
+  getSuccessrender=()=>{
+       const {jobInfo, jobSkill, similarJobs, lifeAtCompany} = this.state
     const {description, imageUrl} = lifeAtCompany
 
     const {
@@ -81,10 +94,9 @@ class JobItemDetails extends Component {
       jobDescription,
       location,
     } = jobInfo
-    console.log(companyWebsiteUrl)
-
+    
     return (
-      <>
+    <>
         <Header />
         <div className="job-item">
           <div className="job-card">
@@ -126,7 +138,7 @@ class JobItemDetails extends Component {
             <h1 className="desc">Skills</h1>
             <ul className="skills-sec">
               {jobSkill.map(jobItem => (
-                <li className="job-list-item">
+                <li className="job-list-item" key={id}>
                   <img
                     src={jobItem.imageUrl}
                     className="skill-logo"
@@ -149,7 +161,7 @@ class JobItemDetails extends Component {
           <div className="semi-sec">
             <ul className="semi-list">
               {similarJobs.map(eachSemi => (
-                <li className="similar-job-card">
+                <li className="similar-job-card" key={eachSemi.id}>
                   <div className="logo-sec">
                     <img
                       src={eachSemi.companyLogoUrl}
@@ -184,6 +196,25 @@ class JobItemDetails extends Component {
           </div>
         </div>
       </>
+    )
+
+  }
+
+  getLoader = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
+
+  render() {
+    const {isLoad}=this.state
+    const token = Cookies.get('jwt_token')
+    if (token === undefined) {
+      return <Redirect to="/login" />
+    }
+
+    return (
+    {isLoad ? (this.getSuccessrender()):(this.getLoader())}
     )
   }
 }
