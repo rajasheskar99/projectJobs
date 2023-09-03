@@ -57,8 +57,8 @@ class Jobs extends Component {
   state = {
     jobsInfo: [],
     searchInput: '',
-    activeSalId: salaryRangesList[0].salaryRangeId,
-    activeEmpId: employmentTypesList[0].employmentTypeId,
+    activeSalId: '',
+    activeEmpId: [],
     apiStatus: apiConstrains.initial,
   }
 
@@ -97,6 +97,10 @@ class Jobs extends Component {
     }
   }
 
+  retryJobs = () => {
+    this.getJobInfo()
+  }
+
   getFailure = () => (
     <div className="not-found-sec">
       <img
@@ -105,10 +109,8 @@ class Jobs extends Component {
         className="no-found"
       />
       <h1 className="not-found-head">Oops! Something Went Wrong </h1>
-      <p className="try">
-        We cannot seem to find the page you are looking for.
-      </p>
-      <button type="button" className="retry">
+      <p className="try">We cannot seem to find the page you are looking for</p>
+      <button type="button" className="retry" onClick={this.retryJobs}>
         Retry
       </button>
     </div>
@@ -122,12 +124,15 @@ class Jobs extends Component {
         className="no-found"
       />
       <h1 className="not-found-head">No Jobs Found</h1>
-      <p className="try">We could not find any jobs,try other filters.</p>
+      <p className="try">We could not find any jobs. Try other filters</p>
     </div>
   )
 
   empInputId = id => {
-    this.setState({activeEmpId: id}, this.getJobInfo)
+    this.setState(
+      prevState => ({activeEmpId: [...prevState.activeEmpId, id]}),
+      this.getJobInfo,
+    )
   }
 
   salInputId = salId => {
@@ -143,26 +148,10 @@ class Jobs extends Component {
   }
 
   renderJobSection = () => {
-    const {jobsInfo, searchInput} = this.state
+    const {jobsInfo} = this.state
     return (
       <div className="jobs-container">
         <div className="job-right-sec">
-          <div>
-            <input
-              type="search"
-              className="input-search"
-              onChange={this.getSearchInput}
-              value={searchInput}
-            />
-            <button
-              type="button"
-              data-testid="searchButton"
-              className="search-btn"
-              onClick={this.getSearch}
-            >
-              <BsSearch className="search-icon" />
-            </button>
-          </div>
           <ul className="job-list">
             {jobsInfo.map(item => (
               <JobCard jobItem={item} key={item.id} />
@@ -194,7 +183,7 @@ class Jobs extends Component {
   }
 
   render() {
-    const {jobsInfo} = this.state
+    const {jobsInfo, searchInput} = this.state
     const result = jobsInfo.length < 1
     const token = Cookies.get('jwt_token')
     if (token === undefined) {
@@ -211,7 +200,26 @@ class Jobs extends Component {
             empInputId={this.empInputId}
             salInputId={this.salInputId}
           />
-          {result ? this.renderEmptyJobs() : this.getRenderResult()}
+          <div className="jobs-item-sec">
+            <div>
+              <input
+                type="search"
+                className="input-search"
+                onChange={this.getSearchInput}
+                value={searchInput}
+              />
+              <button
+                type="button"
+                data-testid="searchButton"
+                className="search-btn"
+                onClick={this.getSearch}
+              >
+                <BsSearch className="search-icon" />
+              </button>
+            </div>
+
+            {result ? this.renderEmptyJobs() : this.getRenderResult()}
+          </div>
         </div>
       </div>
     )
