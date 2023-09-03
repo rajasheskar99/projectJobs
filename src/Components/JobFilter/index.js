@@ -1,11 +1,20 @@
 import {Component} from 'react'
+import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 
 import './index.css'
 
+const apiJobConstrains = {
+  inProcess: 'IN-PROCESS',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  initial: 'INITIAL',
+}
+
 class JobFilter extends Component {
   state = {
     profile: {},
+    apiProfileStatus: apiJobConstrains.initial,
   }
 
   componentDidMount() {
@@ -13,6 +22,7 @@ class JobFilter extends Component {
   }
 
   getProfile = async () => {
+    this.setState({apiProfileStatus: apiJobConstrains.inProcess})
     const token = Cookies.get('jwt_token')
     const url = 'https://apis.ccbp.in/profile'
     const options = {
@@ -30,11 +40,28 @@ class JobFilter extends Component {
         profileImageUrl: profileInfo.profile_details.profile_image_url,
         shortBio: profileInfo.profile_details.short_bio,
       }
-      this.setState({profile: updatedProfile})
+      this.setState({
+        profile: updatedProfile,
+        apiProfileStatus: apiJobConstrains.success,
+      })
+    } else {
+      this.setState({apiProfileStatus: apiJobConstrains.failure})
     }
   }
 
-  render() {
+  retryJob = () => {
+    this.getProfile()
+  }
+
+  renderFailureProfile = () => (
+    <div className="profile-fail">
+      <button type="button" className="retry" onClick={this.retryJob}>
+        Retry
+      </button>
+    </div>
+  )
+
+  renderSuccessProfile = () => {
     const {profile} = this.state
     const {employmentTypes, salaryRanges} = this.props
 
@@ -99,6 +126,32 @@ class JobFilter extends Component {
         </ul>
       </div>
     )
+  }
+
+  getProfileLoader = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
+
+  getRenderProfile = () => {
+    const {apiProfileStatus} = this.state
+    switch (apiProfileStatus) {
+      case apiJobConstrains.success:
+        return this.renderSuccessProfile()
+      case apiJobConstrains.failure:
+        return this.renderFailureProfile()
+      case apiJobConstrains.inProcess:
+        return this.getProfileLoader()
+      default:
+        return null
+    }
+  }
+
+  render() {
+    const {profile} = this.state
+    console.log(profile)
+    return this.getRenderProfile()
   }
 }
 
